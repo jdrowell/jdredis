@@ -1,0 +1,34 @@
+This is an alternate Redis driver for Ruby. 
+
+  Goals:
+    - DON'T LEAK
+    - support ruby 1.9+
+    - be small
+    - be quick
+    - don't be dead
+ 
+  Ungoals:
+    - handholding
+
+Many gems that we have tried to use don't behave very well in a production
+environment. Mostly they are too bloated and have nasty memory leaks.
+Instead of trying to fix all of them, we decided to write our own libs
+when possible.
+
+Salvatore does amazing stuff on Redis and his protocol is very simple and
+easy to implement. This lib only takes care of the functions that we
+use ourselves. Currently the code is alpha quality but works-for-us and
+
+== Design Decisions
+
+  - Sockets are kept open between requests. If Redis closes the socket, we 
+try to reconnect on write.
+
+  - The Redis protocol doesn't make any assumptions about char encodings.
+We force ASCII_8BIT on all strings because Redis counts bytes, not
+characters. On the strings that you do use, you can force_encoding to
+whatever you're using (UTF-8?).
+
+  - Tests will we added as soon as we have time to look for and evaluate
+mocks for the Redis protocol.
+ 
