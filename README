@@ -19,6 +19,11 @@ Salvatore does amazing stuff on Redis and his protocol is very simple and
 easy to implement. This lib only takes care of the functions that we
 use ourselves. Currently the code is alpha quality but works-for-us and
 
+== Protocol support
+
+  - The operations supported at the moment are: PING, EXISTS, DEL, SADD,
+SCARD, SDIFF, SMEMBERS
+
 == Design Decisions
 
   - Sockets are kept open between requests. If Redis closes the socket, we 
